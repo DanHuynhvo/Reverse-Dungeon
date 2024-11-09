@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform movePoint;
     public InputAction playerMovement;
     public Vector3 moveDirection = Vector3.zero;
-    public LayerMask wall;
+    public LayerMask wall, enemy;
 
     private void OnEnable()
     {
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
         // Check for obstacles before moving
-        if (!Physics2D.OverlapCircle((Vector2)movePoint.position, 0.1f, wall))
+        if (!Physics2D.OverlapCircle((Vector2)movePoint.position, 0.1f, wall) && !Physics2D.OverlapCircle((Vector2)movePoint.position, 0.1f, enemy))
         {
             // Move the player smoothly towards the target position
             transform.position = Vector2.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);

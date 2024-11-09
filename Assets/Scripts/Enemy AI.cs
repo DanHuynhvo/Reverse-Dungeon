@@ -9,9 +9,10 @@ public class EnemyAI : MonoBehaviour
     public Vector2 east = new Vector2(1, 0);   // Vector2 for east
     public Vector2 west = new Vector2(-1, 0);  // Vector2 for west
     public Vector2[] direction = new Vector2[4];  // Array of directions
-    public LayerMask wall, player;
+    public LayerMask wall, player, enemy;
     public float moveSpeed = 3f;// Movement speed of the enemy
     public int Speed;
+    
 
     private Transform playerTransform;
     private Vector2 targetPosition;
@@ -26,20 +27,20 @@ public class EnemyAI : MonoBehaviour
         direction[3] = west;
 
         // Subscribe to PlayerTurnEnd event
-        GameEvents.current.onPlayerTurnEnd += MoveEnemy;  // Assuming this is the event trigger
+        //GameEvents.current.onPlayerTurnEnd += MoveEnemy;  // Assuming this is the event trigger
     }
 
-    private void MoveEnemy()
+    public void MoveEnemy()
     {
         // Calculate the path to the player if it's not already calculated
-        if (currentPath.Count == 0)
+        if (currentPath.Count == 0 && Vector2.Distance((Vector2)playerTransform.position, (Vector2)transform.position) > 1.2f)
         {
             currentPath = FindPath((Vector2)transform.position, (Vector2)playerTransform.position);
             MoveOneStep();
         }
 
         // If the path is not empty, move the enemy one step along the path
-        if (currentPath.Count > 0)
+        if (currentPath.Count > 0 && Vector2.Distance((Vector2)playerTransform.position, (Vector2)transform.position) > 1.2f)
         {
             MoveOneStep();
         }
@@ -98,7 +99,7 @@ public class EnemyAI : MonoBehaviour
     // Check if the node (position) is walkable (i.e., no wall)
     private bool IsWalkable(Vector2 position)
     {
-        return !Physics2D.OverlapCircle(position, 0.1f, wall);  // Check if position collides with walls
+        return (!Physics2D.OverlapCircle(position, 0.1f, wall) && !Physics2D.OverlapCircle(position, 0.1f, enemy));  // Check if position collides with walls
     }
 
     // Move the enemy one step along the calculated path
@@ -133,6 +134,14 @@ public class EnemyAI : MonoBehaviour
             }
             }
         }
+
+
+    // Check if a position is occupied by another enemy
+    private bool IsPositionOccupied(Vector2 position)
+    {
+        // Check if the position is occupied by another enemy
+        return Physics2D.OverlapCircle(position, 0.1f, enemy);  // Adjust the radius if needed
+    }
 
     // Node class for A* algorithm
     private class Node : IComparable<Node>
@@ -203,78 +212,3 @@ public class EnemyAI : MonoBehaviour
         }
     }
 }
-
-/*using Unity.VisualScripting;
-using UnityEngine;
-
-public class EnemyAI : MonoBehaviour
-{
-    public Vector2 north = new Vector2(0, 1);  // Vector2 for north
-    public Vector2 south = new Vector2(0, -1); // Vector2 for south
-    public Vector2 east = new Vector2(1, 0);   // Vector2 for east
-    public Vector2 west = new Vector2(-1, 0);  // Vector2 for west
-    public Vector2[] direction = new Vector2[4];  // Array of directions
-    public Vector2[] neighbors = new Vector2[4];  // Array of neighbors
-    public float[] playerDistance = new float[] { 0f, 0f, 0f, 0f };  // Array for storing distances
-    public Transform movePoint;
-    public LayerMask wall, player;
-
-    private void Start()
-    {
-        GameEvents.current.onPlayerTurnEnd += MoveEnemy;
-        direction[0] = north;
-        direction[1] = south;
-        direction[2] = east;
-        direction[3] = west;
-    }
-
-    private void GetNeighbors()
-    {
-        for (int i = 0; i < neighbors.Length; i++)
-        {
-            // Update the position by adding the direction (ignoring the z-component)
-            neighbors[i] = new Vector2(transform.position.x, transform.position.y) + direction[i];
-            //Debug.Log($"Neighbor {i}: {neighbors[i]}");
-        }
-    }
-
-    private void GetDistanceFromPlayer()
-    {
-        for (int i = 0; i < neighbors.Length; i++)
-        {
-            // Calculate the 2D distance (ignoring z-axis)
-            playerDistance[i] = Vector2.Distance(neighbors[i], new Vector2(Player.instance.gameObject.transform.position.x, Player.instance.gameObject.transform.position.y));
-            //Debug.Log($"Distance to neighbor {i}: {playerDistance[i]}");
-        }
-    }
-
-    private void EnemyPathfinding()
-    {
-        int closestNode = -1;
-        float closestDistance = 1000f;
-
-        for (int i = 0; i < playerDistance.Length; i++)
-        {
-            movePoint.position = neighbors[i];
-            if (!Physics2D.OverlapCircle((Vector2)movePoint.position, 0.1f, wall) && !Physics2D.OverlapCircle((Vector2)movePoint.position, 0.1f, player))
-            {
-                if (closestDistance > playerDistance[i])
-                {
-                    closestDistance = playerDistance[i];
-                    closestNode = i;
-                    //Debug.Log(closestNode);
-                    //Debug.Log(direction[i]);
-                }
-            }
-        }
-
-        transform.position += new Vector3(direction[closestNode].x, direction[closestNode].y, 0);
-    }
-
-    private void MoveEnemy()
-    {
-        GetNeighbors();
-        GetDistanceFromPlayer();
-        EnemyPathfinding();
-    }
-}*/
