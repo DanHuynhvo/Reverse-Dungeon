@@ -107,7 +107,7 @@ public class EnemyAI : MonoBehaviour
         if (currentPath.Count > 0)
         {
             // Get the next position from the path
-            for (int i = 0; i < Speed; i++)
+            for (int i = 0; i < Speed && currentPath.Count > 0; i++)
             {
                 Vector2 nextPosition = currentPath[0];
 
