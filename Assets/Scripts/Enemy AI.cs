@@ -10,7 +10,8 @@ public class EnemyAI : MonoBehaviour
     public Vector2 west = new Vector2(-1, 0);  // Vector2 for west
     public Vector2[] direction = new Vector2[4];  // Array of directions
     public LayerMask wall, player;
-    public float moveSpeed = 3f;  // Movement speed of the enemy
+    public float moveSpeed = 3f;// Movement speed of the enemy
+    public int Speed;
 
     private Transform playerTransform;
     private Vector2 targetPosition;
@@ -34,6 +35,7 @@ public class EnemyAI : MonoBehaviour
         if (currentPath.Count == 0)
         {
             currentPath = FindPath((Vector2)transform.position, (Vector2)playerTransform.position);
+            MoveOneStep();
         }
 
         // If the path is not empty, move the enemy one step along the path
@@ -105,29 +107,32 @@ public class EnemyAI : MonoBehaviour
         if (currentPath.Count > 0)
         {
             // Get the next position from the path
-            Vector2 nextPosition = currentPath[0];
-
-            // Get the direction to move in (normalize to avoid overshooting)
-            Vector2 direction = nextPosition - (Vector2)transform.position;
-            if (direction.magnitude > 0)
+            for (int i = 0; i < Speed; i++)
             {
-                // Normalize the direction to get a unit vector
-                direction.Normalize();
+                Vector2 nextPosition = currentPath[0];
 
-                // Move exactly 1 unit towards the next position
-                Vector2 newPosition = Vector2.MoveTowards((Vector2)transform.position, nextPosition, 1f);
+                // Get the direction to move in (normalize to avoid overshooting)
+                Vector2 direction = nextPosition - (Vector2)transform.position;
+                if (direction.magnitude > 0.1f) // Make sure it's far enough to move
+                {
+                    // Normalize the direction to get a unit vector
+                    direction.Normalize();
 
-                // Update the transform's position (convert Vector2 back to Vector3)
-                transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+                    // Move exactly 1 unit towards the next position
+                    Vector2 newPosition = Vector2.MoveTowards((Vector2)transform.position, nextPosition, 1f);
+
+                    // Update the transform's position (convert Vector2 back to Vector3)
+                    transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+                }
+
+                // If the enemy reaches the next position, remove it from the path
+                if ((Vector2)transform.position == nextPosition)
+                {
+                    currentPath.RemoveAt(0);  // Remove the first position in the path
+                }
             }
-
-            // If the enemy reaches the next position, remove it from the path
-            if ((Vector2)transform.position == nextPosition)
-            {
-                currentPath.RemoveAt(0);  // Remove the first position in the path
             }
         }
-    }
 
     // Node class for A* algorithm
     private class Node : IComparable<Node>
