@@ -11,7 +11,6 @@ public class EnemyAI : MonoBehaviour
     public Vector2[] direction = new Vector2[4];  // Array of directions
     public LayerMask wall, player;
     public float moveSpeed = 3f;  // Movement speed of the enemy
-    public float enemyMoveStep = 0;
 
     private Transform playerTransform;
     private Vector2 targetPosition;
