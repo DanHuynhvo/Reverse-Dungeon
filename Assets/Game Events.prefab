@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7442910744319081881}
   - component: {fileID: 5465505181125581884}
+  - component: {fileID: 4887811871041839114}
   m_Layer: 0
   m_Name: Game Events
   m_TagString: Untagged
@@ -44,3 +45,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d72df4269f254f49969a8aeee8179f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4887811871041839114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2483021388459084954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb6f78d8f7a92b4ab93c5c3c88ed7e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fogTilePrefab: {fileID: 0}
+  player: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  visionRadius: 5
+  initialFogSize: 50
