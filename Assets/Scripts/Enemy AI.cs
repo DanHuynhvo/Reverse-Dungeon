@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Vector3 north = new Vector3(0, 1, 0);
-    public Vector3 south = new Vector3(0, -1, 0);
-    public Vector3 east = new Vector3(1, 0, 0);
-    public Vector3 west = new Vector3(-1, 0, 0);
-    public Vector3[] direction = new Vector3[4];
-    public Vector3[] neighbors = new Vector3[4];
-    public float[] playerDistance = new float[] {0f, 0f, 0f, 0f};
+    public Vector2 north = new Vector2(0, 1);  // Vector2 for north
+    public Vector2 south = new Vector2(0, -1); // Vector2 for south
+    public Vector2 east = new Vector2(1, 0);   // Vector2 for east
+    public Vector2 west = new Vector2(-1, 0);  // Vector2 for west
+    public Vector2[] direction = new Vector2[4];  // Array of directions
+    public Vector2[] neighbors = new Vector2[4];  // Array of neighbors
+    public float[] playerDistance = new float[] { 0f, 0f, 0f, 0f };  // Array for storing distances
 
     private void Start()
     {
@@ -24,8 +24,9 @@ public class EnemyAI : MonoBehaviour
     {
         for (int i = 0; i < neighbors.Length; i++)
         {
-            neighbors[i] = transform.position + direction[i];
-            //Debug.Log(neighbors[i]);
+            // Update the position by adding the direction (ignoring the z-component)
+            neighbors[i] = new Vector2(transform.position.x, transform.position.y) + direction[i];
+            Debug.Log($"Neighbor {i}: {neighbors[i]}");
         }
     }
 
@@ -33,8 +34,9 @@ public class EnemyAI : MonoBehaviour
     {
         for (int i = 0; i < neighbors.Length; i++)
         {
-            playerDistance[i] = Vector3.Distance(neighbors[i], Player.instance.gameObject.transform.position);
-            Debug.Log(playerDistance[i]);
+            // Calculate the 2D distance (ignoring z-axis)
+            playerDistance[i] = Vector2.Distance(neighbors[i], new Vector2(Player.instance.gameObject.transform.position.x, Player.instance.gameObject.transform.position.y));
+            Debug.Log($"Distance to neighbor {i}: {playerDistance[i]}");
         }
     }
 
