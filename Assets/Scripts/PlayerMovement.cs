@@ -44,10 +44,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Vector2.Distance(transform.position, movePoint.position) <= .005f)
+        // Get player input for movement
+        moveDirection = playerMovement.ReadValue<Vector2>();
+
+        if (Vector2.Distance(transform.position, movePoint.position) <= .005f && (moveDirection.x != 0 || moveDirection.y != 0))
         {
-            // Get player input for movement
-            moveDirection = playerMovement.ReadValue<Vector2>();
+            
 
             // Remove diagonal movement by ensuring only one axis is active at a time
             if (Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.y))
