@@ -40,9 +40,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Wall");
             movePoint.position = transform.position;
         }
-
-
-
     }
 
     private void Update()
@@ -64,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Normalize and apply the movement
             movePoint.position += Vector3.Normalize(moveDirection);
+            GameEvents.current.PlayerTurnEnd();
         }
 
         MovePlayer(movePoint);
