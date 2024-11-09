@@ -4,6 +4,5 @@ public interface IAttack
 {
     void Attack();
     void Equip();
-
     void AOE();
 }
