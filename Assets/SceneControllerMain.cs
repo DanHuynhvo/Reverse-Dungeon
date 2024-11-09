@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SceneControllerMain : MonoBehaviour
 {
@@ -9,4 +10,10 @@ public class SceneControllerMain : MonoBehaviour
      SceneManager.LoadScene("Reverse Dungeon");
 
    }
+
+   public void EndGame(){
+
+        Application.Quit();
+   }
+
 }
