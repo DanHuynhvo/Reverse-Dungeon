@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Debug.Log("Wall");
+            //Debug.Log("Wall");
             movePoint.position = transform.position;
         }
     }
