@@ -580,7 +580,11 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+<<<<<<< HEAD
 --- !u!1001 &1450680670
+=======
+--- !u!1001 &2078458284
+>>>>>>> bce2ac76b73a539052aeef4c7892e4485bde3bee
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -643,4 +647,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 637185663}
   - {fileID: 283695312}
+<<<<<<< HEAD
   - {fileID: 1450680670}
+=======
+  - {fileID: 2078458284}
+>>>>>>> bce2ac76b73a539052aeef4c7892e4485bde3bee
