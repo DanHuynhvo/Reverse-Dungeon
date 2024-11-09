@@ -40,7 +40,9 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Wall");
             movePoint.position = transform.position;
         }
-        
+
+
+
     }
 
     private void Update()
