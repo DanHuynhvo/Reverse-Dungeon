@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/main menu/main menu things.unity
+    guid: 89d57b0025899694c875fdc6c59c8938
+  - enabled: 1
+    path: Assets/Reverse Dungeon.unity
+    guid: 079a037e87f3a204f95c05ce95f3ea4d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: f70daf64702bb164ea1eb8c3d975fce3, type: 3}
   m_UseUCBPForAssetBundles: 0
