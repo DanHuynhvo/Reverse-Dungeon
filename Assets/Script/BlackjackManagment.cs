@@ -4,12 +4,9 @@ using UnityEngine.UI;
 public class BlackjackManagment : MonoBehaviour
 {
     public Text playerScoreText;
-    public Text dealerScoreText;
     public Deck deck;
-    private int playerScore;
-    private int dealerScore;
-    private List<Card> playerHand;
-    private List<Card> dealerHand;
+    public int playerScore;
+    public List<Card> playerHand;
 
     void Start()
     {
@@ -20,9 +17,7 @@ public class BlackjackManagment : MonoBehaviour
     {
         deck = new Deck();
         playerHand = new List<Card>();
-        dealerHand = new List<Card>();
         playerScore = 0;
-        dealerScore = 0;
         DealInitialCards();
     }
 
@@ -30,8 +25,6 @@ public class BlackjackManagment : MonoBehaviour
     {
         playerHand.Add(deck.DrawCard());
         playerHand.Add(deck.DrawCard());
-        dealerHand.Add(deck.DrawCard());
-        dealerHand.Add(deck.DrawCard());
 
         UpdateScores();
     }
@@ -39,9 +32,7 @@ public class BlackjackManagment : MonoBehaviour
     private void UpdateScores()
     {
         playerScore = CalculateScore(playerHand);
-        dealerScore = CalculateScore(dealerHand);
         playerScoreText.text = "Player Score: " + playerScore;
-        dealerScoreText.text = "Dealer Score: " + dealerScore;
     }
 
     private int CalculateScore(List<Card> hand)
@@ -63,5 +54,28 @@ public class BlackjackManagment : MonoBehaviour
         }
 
         return score;
+    }
+
+    public void OnHit()
+    {
+        playerHand.Add(deck.DrawCard());
+        UpdateScores();
+        if (playerScore > 21)
+        {
+        // Handle player bust (end game)
+        }
+    }
+
+    private void CheckForWinner()
+    {
+        if (playerScore > 21){
+            Debug.Log("Player Bust! Dealer Wins.");
+        }
+    }
+
+     public void OnStand()
+    {
+        UpdateScores();
+        CheckForWinner();
     }
 }

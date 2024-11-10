@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Deck
 {
-    private List<Card> cards;
+    public List<Card> cards;
 
     public Deck()
     {
@@ -13,15 +13,39 @@ public class Deck
         Shuffle();
     }
 
-    private void InitializeDeck()
+    public void InitializeDeck()
     {
         // Add 52 cards with four suits and values 1-11
         // Example: cards.Add(new Card { Suit = "Hearts", Value = 10, Name = "10 of Hearts" });
+        string[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
+        string[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
+        int[] values = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11 }; // Values for each rank (10 for face cards, 11 for Ace)
+
+        foreach (string suit in suits)
+        {
+            for (int i = 0; i < ranks.Length; i++)
+            {
+                Card card = new Card
+                {
+                    Suit = suit,
+                    Value = values[i],
+                    Name = $"{ranks[i]} of {suit}"
+                };
+                cards.Add(card);
+            }
+        }
     }
 
     public void Shuffle()
     {
         // Implement shuffle logic here
+          for (int i = 0; i < cards.Count; i++)
+        {
+            Card temp = cards[i];
+            int randomIndex = Random.Range(i, cards.Count);
+            cards[i] = cards[randomIndex];
+            cards[randomIndex] = temp;
+        }
     }
 
     public Card DrawCard()
