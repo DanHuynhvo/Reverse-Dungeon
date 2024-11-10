@@ -26,7 +26,7 @@ public class PlayerTurn : MonoBehaviour
         playerMovement.Disable();
     }
 
-    /*public IEnumerator StartPlayerTurn()
+    public IEnumerator StartPlayerTurn()
     {
         if (myTurn == true)
         {
@@ -39,22 +39,32 @@ public class PlayerTurn : MonoBehaviour
     public IEnumerator Decisions()
     {
         moveDirection = playerMovement.ReadValue<Vector2>();
-        playerAttack = InputAction.Player.Skill;
+       
 
         if (moveDirection != zeroDirection)
         {
             movementScript.playerMoving(moveDirection);
         }
 
-        else if (playerAttack.triggered) { }
-    }*/
+        else if (IsAttack) { 
 
-    void Update()
+
+
+        }
+    }
+
+    public bool IsAttack()
     {
         // Check if the "1" key is pressed
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1)||Input.GetKeyDown(KeyCode.Alpha2)||Input.GetKeyDown(KeyCode.Alpha3)||Input.GetKeyDown(KeyCode.Alpha4)||Input.GetKeyDown(KeyCode.Alpha5)||Input.GetKeyDown(KeyCode.Alpha6)||Input.GetKeyDown(KeyCode.Alpha7)||Input.GetKeyDown(KeyCode.Alpha8)||Input.GetKeyDown(KeyCode.Alpha9)||Input.GetKeyDown(KeyCode.Alpha0))
         {
-            Debug.Log("The '1' key was pressed!");
-        }
+
+        return true  
+
+        }else {
+
+        return false
+
+      }
     }
 }
