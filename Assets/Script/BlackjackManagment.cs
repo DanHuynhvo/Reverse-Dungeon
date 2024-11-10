@@ -96,21 +96,8 @@ public class BlackjackManagment : MonoBehaviour
         }
     }
 
-    public void Discard()
-    {
-        int choice = 0;
-        Card card = hitCard.collider.GetComponent<Collider>().gameObject.GetComponent<Card>();
-        for(int i = 0; i < hand.Count; i++)
-        {
-            if (card == hand[i])
-            {
-                break;
-            }
-            choice++;
-        }
+   
 
-        hand.RemoveAt(choice);
-    }
     private void CheckForWinner()
     {
         if (playerScore > 21){

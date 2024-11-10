@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-public class Deck
+public class Deck : MonoBehaviour 
 {
     public List<Card> cards;
     public Sprite[] cardSprites; // Drag all card sprites into this array in the Inspector
