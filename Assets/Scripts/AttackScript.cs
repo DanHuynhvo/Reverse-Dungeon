@@ -1,11 +1,13 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
     public List<Attack> playerAttacks = new List<Attack>();
-    public List<GameObject> enemiesInRange = new List<GameObject>();
+    public Collider2D[] enemiesInRange;
+    public List<GameObject> listOfEnemies = new List<GameObject>();
     public Transform player;
     public Vector2 range = Vector2.zero;
     public LayerMask enemy;
@@ -13,19 +15,21 @@ public class AttackScript : MonoBehaviour
 
 
 
-    public void chosenAttack(int option)
+    public IEnumerator chosenAttack(int option)
     {
         attackChosen = playerAttacks[option].gameObject;
         range = playerAttacks[option].range;
 
         //Instantiate(attackChosen);
-        enemiesInRange = new List<GameObject>();
+        enemiesInRange = Physics2D.OverlapBoxAll(player.position, range, 0, enemy);
+
+        for(int i = 0; i < enemiesInRange.Length; i++)
         {
+            listOfEnemies.Add(enemiesInRange[i].gameObject);
+            listOfEnemies[i].gameObject.SetActive(false);
+        }
 
-        };
-        Physics2D.OverlapBoxAll(player.position, range, 0, enemy);
-
-
+        yield return new WaitForSeconds(2f);
 
     }
 }

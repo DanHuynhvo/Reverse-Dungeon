@@ -29,7 +29,7 @@ public class PlayerTurn : MonoBehaviour
         playerMovement.Disable();
     }
 
-   /* public IEnumerator StartPlayerTurn()
+    public IEnumerator StartPlayerTurn()
     {
         if (myTurn == true)
         {
@@ -37,27 +37,31 @@ public class PlayerTurn : MonoBehaviour
 
 
         }
+
+        yield return new WaitForSeconds(2f);
     }
 
     public IEnumerator Decisions()
     {
         moveDirection = playerMovement.ReadValue<Vector2>();
-       
+
 
         if (moveDirection != zeroDirection)
         {
             movementScript.playerMoving(moveDirection);
         }
 
-        else if (IsAttack()) { 
+        else if (IsAttack())
+        {
 
-           StartCoroutine(attackScript.chosenAttack(attackOption));
-
+            StartCoroutine(attackScript.chosenAttack(attackOption));
         }
-    }*/
+
+        yield return new WaitForSeconds(2f);
+    }
 
 
-public bool IsAttack()
+    public bool IsAttack()
 {
     // Check if any of the number keys are pressed
     if (Input.GetKeyDown(KeyCode.Alpha1))
