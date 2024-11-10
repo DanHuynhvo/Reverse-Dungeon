@@ -5,14 +5,11 @@ using UnityEngine;
 public class AttackScript : MonoBehaviour
 {
     public List<Attack> playerAttacks = new List<Attack>();
-<<<<<<< Updated upstream
-=======
     public List<GameObject> enemiesInRange = new List<GameObject>();
     public Transform player = Player.instance.transform;
     public Vector2 range = Vector2.zero;
     public LayerMask enemy;
     GameObject attackChosen;
->>>>>>> Stashed changes
 
 
 
