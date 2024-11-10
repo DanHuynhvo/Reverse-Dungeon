@@ -13,7 +13,7 @@ public class PlayerTurn : MonoBehaviour
 
     public void Awake()
     {
-        
+
     }
 
     private void OnEnable()
@@ -49,17 +49,12 @@ public class PlayerTurn : MonoBehaviour
         else if (playerAttack.triggered) { }
     }*/
 
-
-    public void Start()
+    void Update()
     {
-       // playerAttack
-    }
-
-    public void Update()
-    {
-        /*if (playerAttack.performed)
+        // Check if the "1" key is pressed
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("Fucko");
-        }*/
+            Debug.Log("The '1' key was pressed!");
+        }
     }
 }
