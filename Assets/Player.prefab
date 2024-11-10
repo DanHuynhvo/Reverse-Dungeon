@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5366491900705677564}
   - component: {fileID: 5094522046994467038}
   - component: {fileID: 5305492004179224662}
+  - component: {fileID: 5532006829671393532}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -104,6 +105,9 @@ MonoBehaviour:
   wall:
     serializedVersion: 2
     m_Bits: 64
+  enemy:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &5305492004179224662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +120,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc848b816d3e36f4bbcaf2312f406ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 
+--- !u!114 &5532006829671393532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46202087656710733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbc4c1d38651ce4e95273d77f612a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTurn: 1
+  playerMovement:
+    m_Name: Player Movement
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d9e7e2a5-dcde-4c00-9ba4-8ac84ed041bc
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: ec97d5e7-868b-4839-97a2-a6c8e5c322bc
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 29fa2ed0-a1b0-4862-b09f-b92fe40ac940
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement
+      m_Flags: 8
+    - m_Name: down
+      m_Id: ef96c403-dda3-4295-9510-72400864f54a
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement
+      m_Flags: 8
+    - m_Name: left
+      m_Id: c6764341-4048-4f6e-985e-31fd1e13c358
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 21749078-05cf-486f-90e4-a3440c99fe8b
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement
+      m_Flags: 8
+    m_Flags: 0
+  movementScript: {fileID: 5094522046994467038}
+  moveDirection: {x: 0, y: 0}
+  zeroDirection: {x: 0, y: 0}
+  attackOption: 0
+  attackScript: {fileID: 0}
 --- !u!1 &1477285810095904640
 GameObject:
   m_ObjectHideFlags: 0
