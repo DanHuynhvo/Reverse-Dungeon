@@ -6,7 +6,7 @@ public class AttackScript : MonoBehaviour
 {
     public List<Attack> playerAttacks = new List<Attack>();
     public List<GameObject> enemiesInRange = new List<GameObject>();
-    public Transform player = Player.instance.transform;
+    public Transform player;
     public Vector2 range = Vector2.zero;
     public LayerMask enemy;
     GameObject attackChosen;
