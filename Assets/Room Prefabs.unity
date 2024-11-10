@@ -202,6 +202,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAttacks:
   - {fileID: 7021642026152942900, guid: 1df43ca1f5fe7a94fb7d2d099c3cc4b3, type: 3}
+  enemiesInRange: []
+  player: {fileID: 944745433}
+  range: {x: 0, y: 0}
+  enemy:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!4 &944745433 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5366491900705677564, guid: 5f93e7ed101fc0a4bac6996269b3490d, type: 3}
+  m_PrefabInstance: {fileID: 944745430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6586567068346956268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -256,6 +267,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7021642026152942900, guid: 1df43ca1f5fe7a94fb7d2d099c3cc4b3, type: 3}
       propertyPath: range
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7021642026152942900, guid: 1df43ca1f5fe7a94fb7d2d099c3cc4b3, type: 3}
+      propertyPath: range.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7021642026152942900, guid: 1df43ca1f5fe7a94fb7d2d099c3cc4b3, type: 3}
+      propertyPath: range.y
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
