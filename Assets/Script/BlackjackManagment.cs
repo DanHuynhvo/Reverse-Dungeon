@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagment;
 public class BlackjackManagment : MonoBehaviour
 {
     public Text playerScoreText;
     public Deck deck;
     public int playerScore;
+    public int discardAllowed = 0;
     
     [SerializeField]
     public List<Card> playerHand;
@@ -66,7 +68,7 @@ public class BlackjackManagment : MonoBehaviour
         if (playerScore > 21)
         {
             Debug.Log("Player Bust! Dealer Wins.");
-
+            
 
         }
     }
@@ -74,7 +76,9 @@ public class BlackjackManagment : MonoBehaviour
     private void CheckForWinner()
     {
         if (playerScore > 21){
-            Debug.Log("Player Bust! Dealer Wins.");
+            
+        }else{
+
         }
     }
 
