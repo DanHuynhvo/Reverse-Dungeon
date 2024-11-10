@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
-    List<Attack> playerAttacks = new List<Attack>();
+    public List<Attack> playerAttacks = new List<Attack>();
 
 
 
