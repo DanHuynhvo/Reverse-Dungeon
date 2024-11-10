@@ -12,6 +12,9 @@ public class BlackjackManagment : MonoBehaviour
     [SerializeField]
     public List<Card> playerHand;
 
+     public Transform playerHandArea; // Assign an empty GameObject as a placeholder for cards in the player's hand
+    public GameObject cardPrefab;    // Assign the Card prefab here in the Inspector
+
     void Start()
     {
         StartNewGame();
@@ -27,10 +30,27 @@ public class BlackjackManagment : MonoBehaviour
 
     private void DealInitialCards()
     {
-        playerHand.Add(deck.DrawCard());
-        playerHand.Add(deck.DrawCard());
+        // Draw two cards for the player
+        for (int i = 0; i < 2; i++)
+        {
+            DrawCardForPlayer();
+        }
+
         LogPlayerHand();
         UpdateScores();
+    }
+
+     private void DrawCardForPlayer()
+    {
+        Card card = deck.DrawCard();
+
+        if (card != null)
+        {
+            // Instantiate a card GameObject and set its sprite
+            GameObject cardObject = Instantiate(cardPrefab, playerHandArea);
+            SpriteRenderer renderer = cardObject.GetComponent<SpriteRenderer>();
+            renderer.sprite = card.CardSprite;
+        }
     }
 
     private void UpdateScores()
@@ -65,6 +85,8 @@ public class BlackjackManagment : MonoBehaviour
         playerHand.Add(deck.DrawCard());
         LogPlayerHand();
         UpdateScores();
+        discardAllowed++;
+
         if (playerScore > 21)
         {
             Debug.Log("Player Bust! Dealer Wins.");
@@ -73,6 +95,21 @@ public class BlackjackManagment : MonoBehaviour
         }
     }
 
+    public void Discard()
+    {
+        int choice = 0;
+        Card card = hitCard.collider.GetComponent<Collider>().gameObject.GetComponent<Card>();
+        for(int i = 0; i < hand.Count; i++)
+        {
+            if (card == hand[i])
+            {
+                break;
+            }
+            choice++;
+        }
+
+        hand.RemoveAt(choice);
+    }
     private void CheckForWinner()
     {
         if (playerScore > 21){

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class Deck
 {
     public List<Card> cards;
+    public Sprite[] cardSprites; // Drag all card sprites into this array in the Inspector
+
 
     public Deck()
     {
@@ -29,11 +31,24 @@ public class Deck
                 {
                     Suit = suit,
                     Value = values[i],
-                    Name = $"{ranks[i]} of {suit}"
+                    Name = $"{ranks[i]} of {suit}",
+                    CardSprite = GetCardSprite(suit, ranks[i]) // Get the appropriate sprite for the card
+
                 };
                 cards.Add(card);
             }
         }
+    }
+
+    private Sprite GetCardSprite(string suit, string rank)
+    {
+        // Assuming you have named each sprite as "2 of Hearts", "Ace of Spades", etc.
+        foreach (Sprite sprite in cardSprites)
+        {
+            if (sprite.name == $"{rank} of {suit}")
+                return sprite;
+        }
+        return null;
     }
 
     public void Shuffle()
