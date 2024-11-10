@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using UnityEngine.SceneManagment;
+using UnityEngine.SceneManagement;
 public class BlackjackManagment : MonoBehaviour
 {
     public Text playerScoreText;
@@ -87,10 +87,11 @@ public class BlackjackManagment : MonoBehaviour
         UpdateScores();
         discardAllowed++;
 
-        if (playerScore > 21)
+        if (playerScore >= 21)
         {
             Debug.Log("Player Bust! Dealer Wins.");
-            
+            SceneManager.LoadScene("End Scene");
+
 
         }
     }
