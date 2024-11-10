@@ -32,7 +32,7 @@ public class Deck : MonoBehaviour
                     Suit = suit,
                     Value = values[i],
                     Name = $"{ranks[i]} of {suit}",
-                    CardSprite = GetCardSprite(suit, ranks[i]) // Get the appropriate sprite for the card
+                    cardSprite = GetCardSprite(suit, ranks[i]) // Get the appropriate sprite for the card
 
                 };
                 cards.Add(card);
@@ -40,12 +40,12 @@ public class Deck : MonoBehaviour
         }
     }
 
-    private Sprite GetCardSprite(string suit, string rank)
+    private CardSprite GetCardSprite(string suit, string rank)
     {
         // Assuming you have named each sprite as "2 of Hearts", "Ace of Spades", etc.
-        foreach (Sprite sprite in cardSprites)
+        foreach (CardSprite cardSprite in cardSprites)
         {
-            if (sprite.name == $"{rank} of {suit}")
+            if (cards.name == $"{rank} of {suit}")
                 return sprite;
         }
         return null;
