@@ -58,5 +58,19 @@ public class Hand : MonoBehaviour
         }
     }
 
+    public void Discard(RaycastHit hitCard)
+    {
+        int choice = 0;
+        Card card = hitCard.collider.GetComponent<Collider>().gameObject.GetComponent<Card>();
+        for(int i = 0; i < hand.Count; i++)
+        {
+            if (card == hand[i])
+            {
+                break;
+            }
+            choice++;
+        }
 
+        hand.RemoveAt(choice);
+    }
 }
