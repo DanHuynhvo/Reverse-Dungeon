@@ -15,5 +15,5 @@ EditorBuildSettings:
     path: Assets/Reverse Dungeon.unity
     guid: 079a037e87f3a204f95c05ce95f3ea4d
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: f70daf64702bb164ea1eb8c3d975fce3, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

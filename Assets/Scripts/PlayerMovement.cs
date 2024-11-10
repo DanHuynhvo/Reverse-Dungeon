@@ -29,10 +29,10 @@ public class PlayerMovement : MonoBehaviour
         movePoint.parent = null;
     }
 
-    void Update()
+    public void playerMoving(Vector2 md)
     {
         // Get player input for movement
-        moveDirection = playerMovement.ReadValue<Vector2>();
+        //moveDirection = playerMovement.ReadValue<Vector2>();
 
         // Check if player is close enough to the target to start moving
         if (Vector2.Distance(transform.position, movePoint.position) <= .005f && (moveDirection.x != 0 || moveDirection.y != 0))
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
             if (Vector2.Distance(transform.position, movePoint.position) <= 0.005f)
             {
                 // Player has finished moving, call PlayerTurnEnd()
-                GameEvents.current.PlayerTurnEnd();
+                //GameEvents.current.PlayerTurnEnd();
 
                 // Reset playerActing to false, as movement is complete
                 playerActing = false;
