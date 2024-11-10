@@ -17,7 +17,8 @@ public class TurnManager : MonoBehaviour
         {
             if (currentTurn == 0)
             {
-                
+                Debug.Log("Starting Player");
+                StartCoroutine(playerTurn.StartPlayerTurn());
             }
         }
     }
