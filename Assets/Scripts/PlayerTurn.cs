@@ -29,7 +29,7 @@ public class PlayerTurn : MonoBehaviour
         playerMovement.Disable();
     }
 
-    public IEnumerator StartPlayerTurn()
+   /* public IEnumerator StartPlayerTurn()
     {
         if (myTurn == true)
         {
@@ -51,10 +51,10 @@ public class PlayerTurn : MonoBehaviour
 
         else if (IsAttack()) { 
 
-           StartCoroutine(chosenAttack(attackOption))
+           StartCoroutine(attackScript.chosenAttack(attackOption));
 
         }
-    }
+    }*/
 
 
 public bool IsAttack()

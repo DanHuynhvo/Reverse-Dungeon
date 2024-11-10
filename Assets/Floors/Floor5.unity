@@ -1277,6 +1277,10 @@ PrefabInstance:
       propertyPath: enemy.m_Bits
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 5094522046994467038, guid: 5f93e7ed101fc0a4bac6996269b3490d, type: 3}
+      propertyPath: moveDirection.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5366491900705677564, guid: 5f93e7ed101fc0a4bac6996269b3490d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -2031,26 +2035,20 @@ MonoBehaviour:
       m_Action: Player Movement
       m_Flags: 8
     m_Flags: 0
-  playerAttack:
-    m_Name: Player Attack
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f1a96b9d-1bc8-4656-aca6-4a576d04c652
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: a0f1d79f-5f0b-4a2f-8c49-2168fa95d889
-      m_Path: <Keyboard>/1
-      m_Interactions: Press
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Attack
-      m_Flags: 0
-    m_Flags: 0
-  movementScript: {fileID: 0}
+  movementScript: {fileID: 1735052072}
   moveDirection: {x: 0, y: 0}
   zeroDirection: {x: 0, y: 0}
+--- !u!114 &1735052072 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5094522046994467038, guid: 5f93e7ed101fc0a4bac6996269b3490d, type: 3}
+  m_PrefabInstance: {fileID: 1145848760}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735052067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae14ae7f5f238ae4c9426e0d0fa81a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1796849870
 PrefabInstance:
   m_ObjectHideFlags: 0
