@@ -22,9 +22,9 @@ public class BlackjackManagment : MonoBehaviour
 
     public void StartNewGame()
     {
-        deck = new Deck();
         playerHand = new List<Card>();
         playerScore = 0;
+        deck.InitializeDeck();
         DealInitialCards();
     }
 
@@ -33,11 +33,10 @@ public class BlackjackManagment : MonoBehaviour
     public void DealInitialCards()
     {
         // Draw two cards for the player
-        /*for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++)
         {
             DrawCardForPlayer();
-        }*/
-        playerHand.Add(deck.DrawCard());
+        }
         UpdateScores();
         LogPlayerHand();
     }
@@ -61,28 +60,34 @@ public class BlackjackManagment : MonoBehaviour
     }
 
     private int CalculateScore(List<Card> hand)
+{
+    int score = 0;
+    int aceCount = 0;
+
+    // First, add up the value of each card in the hand
+    foreach (Card card in hand)
     {
-        int score = 0;
-        int aceCount = 0;
-
-        foreach (Card card in hand)
+        if (card.Value == 1)
         {
-            if (card.Value == 1){
-
-             aceCount++;
-            score += card.Value;
-            }
+            aceCount++;      // Track the number of Aces
+            score += 1;      // Count each Ace as 1 initially
         }
-
-        // Adjust for Aces (count 11 if it helps to reach 21 without busting)
-        while (score <= 11 && aceCount > 0)
+        else
         {
-            score += 10;
-            aceCount--;
+            score += card.Value; // Add the value of non-Ace cards directly
         }
-
-        return score;
     }
+
+    // Adjust for Aces (count as 11 if it helps to reach 21 without busting)
+    while (score <= 11 && aceCount > 0)
+    {
+        score += 10; // Increase score by 10 for each Ace that can count as 11
+        aceCount--;
+    }
+
+    return score;
+}
+
 
     public void OnHit()
     {

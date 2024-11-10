@@ -4,29 +4,43 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     public GameObject[] cardPrefabs; // Assign all card prefabs in the Inspector
-    private Dictionary<string, GameObject> cardPrefabDict; // For quick lookup by name
-    private List<Card> cards = new List<Card>();
+    private Dictionary<string, GameObject> cardPrefabDict;
+    private List<Card> cards;
 
     void Start()
     {
-        cards = new List<Card>();
+        cards = new List<Card>(); // Ensure `cards` is initialized
         InitializeDeck();
         Shuffle();
     }
 
-    private void InitializeDeck()
+    public void InitializeDeck()
     {
         string[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
         string[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
         int[] values = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11 };
 
-        // Create a dictionary for quick lookup of card prefabs by name
+        // Create dictionary for card prefabs by name
         cardPrefabDict = new Dictionary<string, GameObject>();
+
+        if (cardPrefabs == null || cardPrefabs.Length == 0)
+        {
+            Debug.LogError("Card Prefabs not assigned in the Inspector!");
+            return;
+        }
+
         foreach (GameObject prefab in cardPrefabs)
         {
+            if (prefab == null)
+            {
+                Debug.LogWarning("Null prefab found in cardPrefabs array.");
+                continue;
+            }
+
             cardPrefabDict[prefab.name] = prefab;
         }
 
+        // Populate the deck with cards
         foreach (string suit in suits)
         {
             for (int i = 0; i < ranks.Length; i++)
@@ -40,6 +54,13 @@ public class Deck : MonoBehaviour
                     Name = cardName,
                     CardPrefab = GetCardPrefab(cardName) // Assign the correct prefab
                 };
+
+                // Check if the prefab is found
+                if (card.CardPrefab == null)
+                {
+                    Debug.LogWarning($"Prefab for {cardName} not found in cardPrefabDict.");
+                }
+
                 cards.Add(card);
             }
         }
@@ -51,8 +72,7 @@ public class Deck : MonoBehaviour
         {
             return prefab;
         }
-        Debug.LogWarning($"Prefab for {cardName} not found!");
-        return null;
+        return null; // If no matching prefab is found, return null
     }
 
     public void Shuffle()

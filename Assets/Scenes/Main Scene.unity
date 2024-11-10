@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 128476746}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.500847, y: -0.34589317, z: -0.05949873}
+  m_LocalPosition: {x: -4.500847, y: -0.34589317, z: 3.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -808,7 +808,7 @@ MonoBehaviour:
   playerScore: 0
   discardAllowed: 0
   playerHandArea: {fileID: 128476747}
-  cardPrefab: {fileID: 2494945049854919020, guid: 32a16854c1a17e446a33289f3b144de1, type: 3}
+  cardPrefab: {fileID: 4509811038846259611, guid: 917353b23ddb83e45a4e7973619104ee, type: 3}
 --- !u!4 &1262544457
 Transform:
   m_ObjectHideFlags: 0
@@ -818,7 +818,7 @@ Transform:
   m_GameObject: {fileID: 1262544455}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1073,7 +1073,7 @@ Transform:
   m_GameObject: {fileID: 1848609652}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 2.7, y: 2.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
