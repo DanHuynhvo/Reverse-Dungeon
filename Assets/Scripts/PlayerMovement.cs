@@ -87,5 +87,6 @@ public class PlayerMovement : MonoBehaviour
             // If there's an obstacle, stop the player at the current position
             movePoint.position = transform.position;
         }
+
     }
 }
