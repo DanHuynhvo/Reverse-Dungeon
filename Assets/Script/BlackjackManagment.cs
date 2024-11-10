@@ -28,28 +28,29 @@ public class BlackjackManagment : MonoBehaviour
         DealInitialCards();
     }
 
-    private void DealInitialCards()
+  
+
+    public void DealInitialCards()
     {
         // Draw two cards for the player
-        for (int i = 0; i < 2; i++)
+        /*for (int i = 0; i < 2; i++)
         {
             DrawCardForPlayer();
-        }
-
-        LogPlayerHand();
+        }*/
+        playerHand.Add(deck.DrawCard());
         UpdateScores();
+        LogPlayerHand();
     }
 
-     private void DrawCardForPlayer()
+    private void DrawCardForPlayer()
     {
         Card card = deck.DrawCard();
+        playerHand.Add(card);
 
         if (card != null)
         {
-            // Instantiate a card GameObject and set its sprite
-            GameObject cardObject = Instantiate(cardPrefab, playerHandArea);
-            SpriteRenderer renderer = cardObject.GetComponent<SpriteRenderer>();
-            renderer.sprite = card.CardSprite;
+            // Instantiate the card prefab and set its position in the player's hand area
+            GameObject cardObject = Instantiate(card.CardPrefab, playerHandArea);
         }
     }
 
@@ -66,8 +67,11 @@ public class BlackjackManagment : MonoBehaviour
 
         foreach (Card card in hand)
         {
-            if (card.Value == 1) aceCount++;
+            if (card.Value == 1){
+
+             aceCount++;
             score += card.Value;
+            }
         }
 
         // Adjust for Aces (count 11 if it helps to reach 21 without busting)

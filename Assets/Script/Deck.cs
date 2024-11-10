@@ -1,60 +1,63 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
-
-public class Deck : MonoBehaviour 
+public class Deck : MonoBehaviour
 {
-    public List<Card> cards;
-    public Sprite[] cardSprites; // Drag all card sprites into this array in the Inspector
+    public GameObject[] cardPrefabs; // Assign all card prefabs in the Inspector
+    private Dictionary<string, GameObject> cardPrefabDict; // For quick lookup by name
+    private List<Card> cards = new List<Card>();
 
-
-    public Deck()
+    void Start()
     {
         cards = new List<Card>();
         InitializeDeck();
         Shuffle();
     }
 
-    public void InitializeDeck()
+    private void InitializeDeck()
     {
-        // Add 52 cards with four suits and values 1-11
-        // Example: cards.Add(new Card { Suit = "Hearts", Value = 10, Name = "10 of Hearts" });
         string[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
         string[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
-        int[] values = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11 }; // Values for each rank (10 for face cards, 11 for Ace)
+        int[] values = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11 };
+
+        // Create a dictionary for quick lookup of card prefabs by name
+        cardPrefabDict = new Dictionary<string, GameObject>();
+        foreach (GameObject prefab in cardPrefabs)
+        {
+            cardPrefabDict[prefab.name] = prefab;
+        }
 
         foreach (string suit in suits)
         {
             for (int i = 0; i < ranks.Length; i++)
             {
+                string cardName = $"{ranks[i]} of {suit}";
+
                 Card card = new Card
                 {
                     Suit = suit,
                     Value = values[i],
-                    Name = $"{ranks[i]} of {suit}",
-                    cardSprite = GetCardSprite(suit, ranks[i]) // Get the appropriate sprite for the card
-
+                    Name = cardName,
+                    CardPrefab = GetCardPrefab(cardName) // Assign the correct prefab
                 };
                 cards.Add(card);
             }
         }
     }
 
-    private CardSprite GetCardSprite(string suit, string rank)
+    private GameObject GetCardPrefab(string cardName)
     {
-        // Assuming you have named each sprite as "2 of Hearts", "Ace of Spades", etc.
-        foreach (CardSprite cardSprite in cardSprites)
+        if (cardPrefabDict.TryGetValue(cardName, out GameObject prefab))
         {
-            if (cards.name == $"{rank} of {suit}")
-                return sprite;
+            return prefab;
         }
+        Debug.LogWarning($"Prefab for {cardName} not found!");
         return null;
     }
 
     public void Shuffle()
     {
-        // Implement shuffle logic here
-          for (int i = 0; i < cards.Count; i++)
+        for (int i = 0; i < cards.Count; i++)
         {
             Card temp = cards[i];
             int randomIndex = Random.Range(i, cards.Count);
@@ -65,8 +68,12 @@ public class Deck : MonoBehaviour
 
     public Card DrawCard()
     {
-        Card card = cards[0];
-        cards.RemoveAt(0);
-        return card;
+        if (cards.Count > 0)
+        {
+            Card card = cards[0];
+            cards.RemoveAt(0);
+            return card;
+        }
+        return null;
     }
 }
