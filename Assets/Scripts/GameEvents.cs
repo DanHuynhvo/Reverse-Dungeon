@@ -15,9 +15,10 @@ public class GameEvents : MonoBehaviour
     public event Action onPlayerTurnEnd;
     public void PlayerTurnEnd()
     {
-        if (onPlayerTurnEnd != null)
+        if(onPlayerTurnEnd != null)
         {
             onPlayerTurnEnd();
         }
     }
 }
+

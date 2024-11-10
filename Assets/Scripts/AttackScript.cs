@@ -10,6 +10,6 @@ public class AttackScript : MonoBehaviour
 
     public void chosenAttack(int option)
     {
-        
+        playerAttacks[option]
     }
 }
