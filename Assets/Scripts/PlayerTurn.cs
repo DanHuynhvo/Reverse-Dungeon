@@ -12,6 +12,8 @@ public class PlayerTurn : MonoBehaviour
     public Vector2 zeroDirection = Vector2.zero;
     public int attackOption;
 
+    public AttackScript attackScript;
+
     public void Awake()
     {
 
@@ -49,7 +51,7 @@ public class PlayerTurn : MonoBehaviour
 
         else if (IsAttack()) { 
 
-
+           StartCoroutine(chosenAttack(attackOption))
 
         }
     }
