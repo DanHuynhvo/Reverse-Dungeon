@@ -207,7 +207,7 @@ MonoBehaviour:
   range: {x: 0, y: 0}
   enemy:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!4 &944745433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5366491900705677564, guid: 5f93e7ed101fc0a4bac6996269b3490d, type: 3}
