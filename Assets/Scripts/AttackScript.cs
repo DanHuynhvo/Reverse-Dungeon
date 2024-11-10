@@ -17,8 +17,8 @@ public class AttackScript : MonoBehaviour
 
     public IEnumerator chosenAttack(int option)
     {
-        attackChosen = playerAttacks[option].gameObject;
-        range = playerAttacks[option].range;
+        attackChosen = playerAttacks[option -1].gameObject;
+        range = playerAttacks[option - 1].range;
 
         //Instantiate(attackChosen);
         enemiesInRange = Physics2D.OverlapBoxAll(player.position, range, 0, enemy);

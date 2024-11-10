@@ -1876,6 +1876,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 410334000845483007, guid: 5f93e7ed101fc0a4bac6996269b3490d, type: 3}
+      propertyPath: playerAttacks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 410334000845483007, guid: 5f93e7ed101fc0a4bac6996269b3490d, type: 3}
+      propertyPath: 'playerAttacks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7021642026152942900, guid: 1df43ca1f5fe7a94fb7d2d099c3cc4b3, type: 3}
     - target: {fileID: 1477285810095904640, guid: 5f93e7ed101fc0a4bac6996269b3490d, type: 3}
       propertyPath: m_Name
       value: Fog

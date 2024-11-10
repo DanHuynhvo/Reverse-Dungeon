@@ -12,14 +12,14 @@ public class TurnManager : MonoBehaviour
 
     public void Start()
     {
-        //turns.Add(Player.instance.gameObject);
-        while (floorRunning == true)
-        {
+        StartPlayerTurn();
+    }
+
+    public void StartPlayerTurn()
+    {
             if (currentTurn == 0)
             {
-                Debug.Log("Starting Player");
                 StartCoroutine(playerTurn.StartPlayerTurn());
             }
-        }
     }
 }
