@@ -6,6 +6,8 @@ public class BlackjackManagment : MonoBehaviour
     public Text playerScoreText;
     public Deck deck;
     public int playerScore;
+    
+    [SerializeField]
     public List<Card> playerHand;
 
     void Start()
@@ -25,7 +27,7 @@ public class BlackjackManagment : MonoBehaviour
     {
         playerHand.Add(deck.DrawCard());
         playerHand.Add(deck.DrawCard());
-
+        LogPlayerHand();
         UpdateScores();
     }
 
@@ -59,10 +61,13 @@ public class BlackjackManagment : MonoBehaviour
     public void OnHit()
     {
         playerHand.Add(deck.DrawCard());
+        LogPlayerHand();
         UpdateScores();
         if (playerScore > 21)
         {
-        // Handle player bust (end game)
+            Debug.Log("Player Bust! Dealer Wins.");
+
+
         }
     }
 
@@ -78,4 +83,14 @@ public class BlackjackManagment : MonoBehaviour
         UpdateScores();
         CheckForWinner();
     }
+
+    public void LogPlayerHand()
+{
+    string handDescription = "Player's Hand:\n";
+    foreach (Card card in playerHand)
+    {
+        handDescription += $"{card.Name} (Value: {card.Value})\n";
+    }
+    Debug.Log(handDescription);
+}
 }
