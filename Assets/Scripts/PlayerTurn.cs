@@ -10,6 +10,7 @@ public class PlayerTurn : MonoBehaviour
     public PlayerMovement movementScript;
     public Vector2 moveDirection = Vector2.zero;
     public Vector2 zeroDirection = Vector2.zero;
+    public int attackOption;
 
     public void Awake()
     {
@@ -46,25 +47,71 @@ public class PlayerTurn : MonoBehaviour
             movementScript.playerMoving(moveDirection);
         }
 
-        else if (IsAttack) { 
+        else if (IsAttack()) { 
 
 
 
         }
     }
 
-    public bool IsAttack()
+
+public bool IsAttack()
+{
+    // Check if any of the number keys are pressed
+    if (Input.GetKeyDown(KeyCode.Alpha1))
     {
-        // Check if the "1" key is pressed
-        if (Input.GetKeyDown(KeyCode.Alpha1)||Input.GetKeyDown(KeyCode.Alpha2)||Input.GetKeyDown(KeyCode.Alpha3)||Input.GetKeyDown(KeyCode.Alpha4)||Input.GetKeyDown(KeyCode.Alpha5)||Input.GetKeyDown(KeyCode.Alpha6)||Input.GetKeyDown(KeyCode.Alpha7)||Input.GetKeyDown(KeyCode.Alpha8)||Input.GetKeyDown(KeyCode.Alpha9)||Input.GetKeyDown(KeyCode.Alpha0))
-        {
-
-        return true  
-
-        }else {
-
-        return false
-
-      }
+        attackOption = 1;
+        return true;
     }
+    else if (Input.GetKeyDown(KeyCode.Alpha2))
+    {
+        attackOption = 2;
+        return true;
+    }
+    else if (Input.GetKeyDown(KeyCode.Alpha3))
+    {
+        attackOption = 3;
+        return true;
+    }
+    else if (Input.GetKeyDown(KeyCode.Alpha4))
+    {
+        attackOption = 4;
+        return true;
+    }
+    else if (Input.GetKeyDown(KeyCode.Alpha5))
+    {
+        attackOption = 5;
+        return true;
+    }
+    else if (Input.GetKeyDown(KeyCode.Alpha6))
+    {
+        attackOption = 6;
+        return true;
+    }
+    else if (Input.GetKeyDown(KeyCode.Alpha7))
+    {
+        attackOption = 7;
+        return true;
+    }
+    else if (Input.GetKeyDown(KeyCode.Alpha8))
+    {
+        attackOption = 8;
+        return true;
+    }
+    else if (Input.GetKeyDown(KeyCode.Alpha9))
+    {
+        attackOption = 9;
+        return true;
+    }
+    else if (Input.GetKeyDown(KeyCode.Alpha0))
+    {
+        attackOption = 0;
+        return true;
+    }
+    else
+    {
+        return false; // No key pressed
+    }
+}
+
 }
