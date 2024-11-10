@@ -67,6 +67,7 @@ public class PlayerTurn : MonoBehaviour
         }
 
         // Optionally, after the decision is made, you could perform other actions here
+        GameEvents.current.PlayerTurnEnd();
         Debug.Log("Player's turn finished");
     }
 

@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public void playerMoving(Vector2 md)
     {
         // Get player input for movement
-        //moveDirection = playerMovement.ReadValue<Vector2>();
+        moveDirection = md;
 
         // Check if player is close enough to the target to start moving
         if (Vector2.Distance(transform.position, movePoint.position) <= .005f && (moveDirection.x != 0 || moveDirection.y != 0))
@@ -70,8 +70,8 @@ public class PlayerMovement : MonoBehaviour
         if (!Physics2D.OverlapCircle((Vector2)movePoint.position, 0.1f, wall) && !Physics2D.OverlapCircle((Vector2)movePoint.position, 0.1f, enemy))
         {
             // Move the player smoothly towards the target position
-            transform.position = Vector2.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
-
+            //transform.position = Vector2.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+            transform.position = movePoint.position;
             // Check if player has reached the target position
             if (Vector2.Distance(transform.position, movePoint.position) <= 0.005f)
             {
