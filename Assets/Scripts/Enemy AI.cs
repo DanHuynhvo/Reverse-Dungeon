@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour
     public LayerMask wall, player, enemy;
     public float moveSpeed = 3f;// Movement speed of the enemy
     public int Speed;
-    
+
 
     private Transform playerTransform;
     private Vector2 targetPosition;
@@ -99,7 +99,7 @@ public class EnemyAI : MonoBehaviour
     // Check if the node (position) is walkable (i.e., no wall)
     private bool IsWalkable(Vector2 position)
     {
-        return (!Physics2D.OverlapCircle(position, 0.1f, wall) && !Physics2D.OverlapCircle(position, 0.1f, enemy));  // Check if position collides with walls
+        return (!Physics2D.OverlapCircle(position, 0.1f, wall) && !Physics2D.OverlapCircle(position, .1f, enemy));  // Check if position collides with walls
     }
 
     // Move the enemy one step along the calculated path
@@ -132,8 +132,8 @@ public class EnemyAI : MonoBehaviour
                     currentPath.RemoveAt(0);  // Remove the first position in the path
                 }
             }
-            }
         }
+    }
 
 
     // Check if a position is occupied by another enemy
